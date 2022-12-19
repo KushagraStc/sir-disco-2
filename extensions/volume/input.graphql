@@ -1,0 +1,47 @@
+query Input {
+  cart {
+    buyerIdentity{
+      customer{
+        hasAnyTag
+        numberOfOrders
+        amountSpent{
+          amount
+          currencyCode
+        }
+      }
+      email
+    }
+    lines {
+      id
+      cost{
+        totalAmount{
+          amount
+          currencyCode
+        }
+      }
+      quantity
+      merchandise {
+        ...on ProductVariant {
+          id
+          product{
+            id
+            inAnyCollection
+            isGiftCard
+            productType
+            vendor
+            handle
+            hasAnyTag
+          }
+          sku
+          weight
+          weightUnit
+        }
+      }
+    }
+  }
+  discountNode {
+    metafield(namespace: "sir-disco2", key: "function-config") {
+      value
+    }
+  }
+}
